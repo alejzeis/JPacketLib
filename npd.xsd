@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://jython234.github.io/JPacketLib" elementFormDefault="qualified">
+    <!-- Version 1.0 of NPD specfiication -->
+    <xsd:element name="protocol">
+        <xsd:complexType>
+            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                <xsd:choice>
+                    <xsd:element name="packet">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="pid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                <xsd:element name="field" minOccurs="0" maxOccurs="unbounded" type="packetField"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="version" type="xsd:integer" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="packetField">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="type" type="fieldType" use="required"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="fieldType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="byte"/>
+            <xsd:enumeration value="bool"/>
+            <xsd:enumeration value="int16"/>
+            <xsd:enumeration value="uint16"/>
+            <xsd:enumeration value="int32"/>
+            <xsd:enumeration value="uint32"/>
+            <xsd:enumeration value="int64"/>
+            <xsd:enumeration value="float"/>
+            <xsd:enumeration value="double"/>
+            <xsd:enumeration value="int24"/>
+            <xsd:enumeration value="uint24"/>
+            <xsd:enumeration value="str"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
