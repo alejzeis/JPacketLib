@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol
+    xmlns="http://jython234.github.io/JPacketLib"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jython234.github.io/JPacketLib https://raw.githubusercontent.com/jython234/JPacketLib/master/npd.xsd"
+
+    name="ExampleProtocol"
+    version="20">
+
+    <packet name="ExamplePacket">
+        <pid>84</pid>
+        <field name="Field1" type="int16"/>
+        <field name="Field2" type="bytes" length="16"/>
+    </packet>
+
+    <packet name="ExamplePacket2">
+        <pid>85</pid>
+        <field name="Field3" type="str"/>
+    </packet>
+</protocol>

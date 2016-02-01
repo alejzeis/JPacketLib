@@ -39,6 +39,12 @@ public class DefinitionParser {
                     field.normalize();
                     String fieldName = field.getAttribute("name");
                     String fieldType = field.getAttribute("type");
+                    if(fieldType.equals(FieldType.BYTES.toString())) {
+                        if(!field.hasAttribute("length")) throw new ParseException("Length not specified for fieldType \"bytes\"");
+                        FieldType f = FieldType.BYTES;
+                        f.setLength(Integer.parseInt(field.getAttribute("length")));
+                        fieldMap.put(fieldName, f);
+                    }
                     fieldMap.put(fieldName, FieldType.parseType(fieldType));
                 }
                 protocol.addPacketDef(new PacketDefinition(pid, pkName, fieldMap));

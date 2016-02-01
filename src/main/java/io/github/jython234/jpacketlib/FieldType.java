@@ -1,28 +1,41 @@
 package io.github.jython234.jpacketlib;
 
+import com.sun.xml.internal.fastinfoset.tools.FI_DOM_Or_XML_DOM_SAX_SAXEvent;
+
 /**
  * Represents different types of fields.
  */
 public enum FieldType {
-    BYTE("byte", byte.class),
-    BOOL("bool", boolean.class),
-    SHORT("int16", short.class),
-    USHORT("uint16", int.class),
-    INTEGER("int32", int.class),
-    UINTEGER("uint32", long.class),
-    LONG("int64", long.class),
-    FLOAT("float", float.class),
-    DOUBLE("double", double.class),
-    INT24("int24", int.class),
-    UINT24("uint24", int.class),
-    STRING("str", String.class);
+    BYTE("byte", byte.class, 1),
+    BOOL("bool", boolean.class, 1),
+    SHORT("int16", short.class, 2),
+    USHORT("uint16", int.class, 2),
+    INTEGER("int32", int.class, 4),
+    UINTEGER("uint32", long.class, 4),
+    LONG("int64", long.class, 8),
+    FLOAT("float", float.class, 4),
+    DOUBLE("double", double.class, 8),
+    INT24("int24", int.class, 3),
+    UINT24("uint24", int.class, 3),
+    STRING("str", String.class, -2), //Length found when reading
+    BYTES("bytes", byte[].class, -1);
 
     private String type;
     private Class asClass;
+    private int len;
 
-    FieldType(String type, Class asClass) {
+    FieldType(String type, Class asClass, int len) {
         this.type = type;
         this.asClass = asClass;
+        this.len = len;
+    }
+
+    public void setLength(int len) {
+        this.len = len;
+    }
+
+    public int getLength() {
+        return len;
     }
 
     public static FieldType parseType(String string) {
@@ -45,5 +58,10 @@ public enum FieldType {
 
     public Class getAsClass() {
         return asClass;
+    }
+
+    @Override
+    public String toString() {
+        return type;
     }
 }

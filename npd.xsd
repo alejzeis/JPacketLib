@@ -24,6 +24,7 @@
     <xsd:complexType name="packetField">
         <xsd:attribute name="name" type="xsd:string" use="required"/>
         <xsd:attribute name="type" type="fieldType" use="required"/>
+        <xsd:attribute name="length" type="xsd:unsignedInt" use="optional"/> <!-- attr "length" only used when "type" is "bytes" -->
     </xsd:complexType>
 
     <xsd:simpleType name="fieldType">
@@ -40,6 +41,7 @@
             <xsd:enumeration value="int24"/>
             <xsd:enumeration value="uint24"/>
             <xsd:enumeration value="str"/>
+            <xsd:enumeration value="bytes"/>
         </xsd:restriction>
     </xsd:simpleType>
 
