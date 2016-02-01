@@ -1,7 +1,5 @@
 package io.github.jython234.jpacketlib;
 
-import com.sun.xml.internal.fastinfoset.tools.FI_DOM_Or_XML_DOM_SAX_SAXEvent;
-
 /**
  * Represents different types of fields.
  */

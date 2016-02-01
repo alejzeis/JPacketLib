@@ -12,6 +12,13 @@
         packet definitions stored in XML.
     </description>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshot-repo</id>
+            <url>https://raw.githubusercontent.com/BlockServerProject/MavenRepository/master/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
