@@ -15,7 +15,7 @@ public enum FieldType {
     DOUBLE("double", double.class, 8),
     INT24("int24", int.class, 3),
     UINT24("uint24", int.class, 3),
-    STRING("str", String.class, -2), //Length found when reading
+    STRING("str", String.class, 2), //Length here specifies how many bytes to read to get the string length
     BYTES("bytes", byte[].class, -1);
 
     private String type;

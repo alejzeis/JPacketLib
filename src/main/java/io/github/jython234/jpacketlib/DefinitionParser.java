@@ -44,6 +44,13 @@ public class DefinitionParser {
                         FieldType f = FieldType.BYTES;
                         f.setLength(Integer.parseInt(field.getAttribute("length")));
                         fieldMap.put(fieldName, f);
+                        continue;
+                    }
+                    if(fieldType.equals(FieldType.STRING.toString()) && field.hasAttribute("length_type")) {
+                        FieldType f = FieldType.STRING;
+                        f.setLength(Integer.parseInt(field.getAttribute("count_length")));
+                        fieldMap.put(fieldName, f);
+                        continue;
                     }
                     fieldMap.put(fieldName, FieldType.parseType(fieldType));
                 }

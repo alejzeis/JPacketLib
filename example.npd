@@ -15,6 +15,6 @@
 
     <packet name="ExamplePacket2">
         <pid>85</pid>
-        <field name="Field3" type="str"/>
+        <field name="Field3" type="str" count_length="3"/>
     </packet>
 </protocol>

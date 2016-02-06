@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://jython234.github.io/JPacketLib" elementFormDefault="qualified">
-    <!-- Version 1.0 of NPD specfiication -->
+    <!-- Version 1.1 of NPD specfiication -->
     <xsd:element name="protocol">
         <xsd:complexType>
             <xsd:sequence minOccurs="0" maxOccurs="unbounded">
@@ -25,6 +25,7 @@
         <xsd:attribute name="name" type="xsd:string" use="required"/>
         <xsd:attribute name="type" type="fieldType" use="required"/>
         <xsd:attribute name="length" type="xsd:unsignedInt" use="optional"/> <!-- attr "length" only used when "type" is "bytes" -->
+        <xsd:attribute name="count_length" type="xsd:unsignedInt" use="optional"/> <!-- attr "count_length" used to specify how many bytes to retrieve length -->
     </xsd:complexType>
 
     <xsd:simpleType name="fieldType">
