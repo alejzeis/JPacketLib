@@ -7,7 +7,9 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,8 +32,11 @@ public class DefinitionParser {
                 element.normalize();
                 String pkName = element.getAttribute("name");
                 int pid = Integer.parseInt(element.getElementsByTagName("pid").item(0).getTextContent(), 16);
+                int length = Integer.parseInt(element.getElementsByTagName("length").item(0).getTextContent());
+                if(length < -1) throw new ParseException("Packet Length must be positive or -1");
 
                 Map<String, FieldType> fieldMap = new HashMap<>();
+                List<String> order = new ArrayList<>();
 
                 NodeList fields = element.getElementsByTagName("field");
                 for(int i2 = 0; i2 < fields.getLength(); i2++) {
@@ -39,6 +44,7 @@ public class DefinitionParser {
                     field.normalize();
                     String fieldName = field.getAttribute("name");
                     String fieldType = field.getAttribute("type");
+                    order.add(i2, fieldName);
                     if(fieldType.equals(FieldType.BYTES.toString())) {
                         if(!field.hasAttribute("length")) throw new ParseException("Length not specified for fieldType \"bytes\"");
                         FieldType f = FieldType.BYTES;
@@ -54,7 +60,7 @@ public class DefinitionParser {
                     }
                     fieldMap.put(fieldName, FieldType.parseType(fieldType));
                 }
-                protocol.addPacketDef(new PacketDefinition(pid, pkName, fieldMap));
+                protocol.addPacketDef(new PacketDefinition(pid, pkName, length, fieldMap, order));
             }
         } catch (Exception e) {
             throw new ParseException(e);

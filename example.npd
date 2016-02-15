@@ -2,7 +2,7 @@
 <protocol
     xmlns="http://jython234.github.io/JPacketLib"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://jython234.github.io/JPacketLib https://raw.githubusercontent .com/jython234/JPacketLib/master/npd.xsd"
+    xsi:schemaLocation="http://jython234.github.io/JPacketLib https://raw.githubusercontent.com/jython234/JPacketLib/master/npd.xsd"
 
     name="ExampleProtocol"
     version="20">

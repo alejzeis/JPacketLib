@@ -12,6 +12,7 @@
                                 <xsd:element name="field" minOccurs="0" maxOccurs="unbounded" type="packetField"/>
                             </xsd:sequence>
                             <xsd:attribute name="name" type="xsd:string" use="required"/>
+                            <xsd:attribute name="length" type="xsd:integer" use="optional" default="-1"/>
                         </xsd:complexType>
                     </xsd:element>
                 </xsd:choice>
