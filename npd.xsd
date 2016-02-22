@@ -15,6 +15,7 @@
                             <xsd:attribute name="length" type="xsd:integer" use="optional" default="-1"/>
                         </xsd:complexType>
                     </xsd:element>
+                    <xsd:element name="const" type="constant" minOccurs="0" maxOccurs="unbounded"/>
                 </xsd:choice>
             </xsd:sequence>
             <xsd:attribute name="name" type="xsd:string" use="required"/>
@@ -28,6 +29,20 @@
         <xsd:attribute name="length" type="xsd:unsignedInt" use="optional"/> <!-- attr "length" only used when "type" is "bytes" -->
         <xsd:attribute name="count_length" type="xsd:unsignedInt" use="optional"/> <!-- attr "count_length" used to specify how many bytes to retrieve length -->
     </xsd:complexType>
+
+    <xsd:complexType name="constant">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="type" type="constantType" use="required"/>
+        <xsd:attribute name="value" type="xsd:anyType" use="required"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="constantType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="integer"/>
+            <xsd:enumeration value="decimal"/>
+            <xsd:enumeration value="string"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 
     <xsd:simpleType name="fieldType">
         <xsd:restriction base="xsd:string">

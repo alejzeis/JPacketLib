@@ -1,5 +1,9 @@
 package io.github.jython234.jpacketlib;
 
+import io.github.jython234.jpacketlib.packet.PacketDefinition;
+import io.github.jython234.jpacketlib.types.Constant;
+import io.github.jython234.jpacketlib.types.ConstantType;
+import io.github.jython234.jpacketlib.types.FieldType;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -25,7 +29,7 @@ public class DefinitionParser {
             Element root = doc.getDocumentElement();
             root.normalize();
             protocol = new Protocol(root.getAttribute("name"), Integer.parseInt(root.getAttribute("version")));
-
+            //TODO: Check Exceptions
             NodeList packets = doc.getElementsByTagName("packet");
             for(int i = 0; i < packets.getLength(); i++) {
                 Element element = (Element) packets.item(i);
@@ -61,6 +65,31 @@ public class DefinitionParser {
                     fieldMap.put(fieldName, FieldType.parseType(fieldType));
                 }
                 protocol.addPacketDef(new PacketDefinition(pid, pkName, length, fieldMap, order));
+            }
+
+            NodeList constants = doc.getElementsByTagName("const");
+            for(int i = 0; i < constants.getLength(); i++) {
+                Element element = (Element) constants.item(i);
+                String name = element.getAttribute("name");
+                ConstantType type = ConstantType.valueOf(element.getAttribute("type"));
+                String value = element.getAttribute("value");
+
+                Constant c;
+                try {
+                    switch (type) {
+                        case INTEGER:
+                            c = new Constant(name, type, Integer.parseInt(value));
+                            break;
+                        case DECIMAL:
+                            c = new Constant(name, type, Double.parseDouble(value));
+                            break;
+                        default:
+                            c = new Constant(name, type, value);
+                    }
+                    protocol.addConstant(c);
+                } catch (NumberFormatException e) {
+                    throw new ParseException("Value of constant \""+name+"\" must match type: \""+type+"\"");
+                }
             }
         } catch (Exception e) {
             throw new ParseException(e);

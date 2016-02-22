@@ -1,5 +1,4 @@
 import io.github.jython234.jpacketlib.DefinitionParser;
-import io.github.jython234.jpacketlib.FieldType;
 import io.github.jython234.jpacketlib.Protocol;
 
 import java.io.File;

@@ -1,4 +1,6 @@
-package io.github.jython234.jpacketlib;
+package io.github.jython234.jpacketlib.packet;
+
+import io.github.jython234.jpacketlib.types.FieldType;
 
 import java.util.ArrayList;
 import java.util.HashMap;

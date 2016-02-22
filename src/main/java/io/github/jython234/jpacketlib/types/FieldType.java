@@ -1,4 +1,4 @@
-package io.github.jython234.jpacketlib;
+package io.github.jython234.jpacketlib.types;
 
 /**
  * Represents different types of fields.

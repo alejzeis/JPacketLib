@@ -7,6 +7,8 @@
     name="ExampleProtocol"
     version="20">
 
+    <const name="ExampleConstant" type="integer" value="24"/>
+
     <packet name="ExamplePacket">
         <pid>84</pid>
         <field name="Field1" type="int16"/>
